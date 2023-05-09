@@ -1,0 +1,16 @@
+{
+  "name": "pewpew-adapter",
+  "version": "1.0.0",
+  "description": "An adapter for pewpew to load an external datasource",
+  "main": "./src/index.ts",
+  "scripts": {
+    "trace": "ts-node ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.8.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

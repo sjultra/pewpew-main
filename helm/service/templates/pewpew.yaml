@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pewpew
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pewpew
+  template:
+    metadata:
+      labels:
+        app: pewpew
+    spec:
+      containers:
+        - name: pewpew
+          image: "{{ .Values.pewpew.image }}:{{ .Values.pewpew.tag }}"
+
+          volumeMounts:
+            - name: {{ .Values.pvc.mount }}
+              mountPath: /opt/pewpew/data
+
+      volumes:
+        - name: {{ .Values.pvc.mount }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.claim }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pewpew
+spec:
+  selector:
+    app: pewpew
+  ports:
+    - protocol: TCP
+      port: {{ .Values.pewpew.httpPort }}
+      targetPort: {{ .Values.pewpew.targetPort }}
+

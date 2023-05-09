@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: adapter
+spec:
+  schedule: {{ .Values.adapter.schedule }}
+  successfulJobsHistoryLimit: 0
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: adapter
+        spec:       
+          containers:
+            - name: adapter
+              image: "{{ .Values.adapter.image }}:{{ .Values.adapter.tag }}"
+              
+              volumeMounts:
+                - name: {{ .Values.pvc.mount }}
+                  mountPath: /adapter/data
+
+              env:
+                - name: TENANT_ID
+                  value: {{ .Values.adapter.tenantId }}
+                - name: CLIENT_ID
+                  value: {{ .Values.adapter.clientId }}
+                - name: CLIENT_SECRET
+                  value: {{ .Values.adapter.clientSecret }}
+          
+          volumes:
+            - name: {{ .Values.pvc.mount }}
+              persistentVolumeClaim:
+                claimName: {{ .Values.pvc.claim }}
+          
+          restartPolicy: Never

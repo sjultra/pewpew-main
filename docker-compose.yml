@@ -1,0 +1,22 @@
+---
+version: "1.0"
+services:
+  pewpew:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./docker/adapter/data:/opt/pewpew/data
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    # depends_on:
+    #   - "pewpew_data"
+
+  # pewpew_data:
+  #   build:
+  #     context: ./docker/datasource
+  #     dockerfile: ./docker/datasource/Dockerfile
+  #   volumes:
+  #     - ./docker/datasource/data:/datasource/data
+  #   restart: unless-stopped
