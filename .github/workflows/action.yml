@@ -1,7 +1,7 @@
 # Builds the pewpew and pewpew-adapter images and pushes them to Docker Hub.
 # Runs on push to main or manual dispatch.
 
-name: "[E-STALE] Build and Push Pewpew Docker Images"
+name: "Build and Push Pewpew Docker Images"
 
 # Controls when the workflow will run
 on:
