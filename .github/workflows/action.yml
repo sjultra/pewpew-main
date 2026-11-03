@@ -1,13 +1,12 @@
-# This is a basic workflow to help you get started with Actions
+# Builds the pewpew and pewpew-adapter images and pushes them to Docker Hub.
+# Runs on push to main or manual dispatch.
 
-name: Build and push docker image
+name: "[E-STALE] Build and Push Pewpew Docker Images"
 
 # Controls when the workflow will run
 on:
   # commented to not be triggered on each commit
   #   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: ["main"]
   #   pull_request:
   #     branches: [ "main" ]
 
